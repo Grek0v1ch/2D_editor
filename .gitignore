@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+2D_Editor/Debug
+2D_Editor/2D_Editor/Debug
+2D_Editor/.vs
