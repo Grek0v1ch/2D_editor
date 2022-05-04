@@ -36,5 +36,6 @@
 2D_Editor/.vs
 2D_Editor/x64
 2D_Editor/2D_Editor/x64
+2D_Editor/2D_Editor/product/
 .DS_Store
 *.sublime-workspace

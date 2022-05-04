@@ -140,6 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\point.cpp" />
+    <ClCompile Include="source\segment.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\point.hpp" />
+    <ClInclude Include="headers\segment.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
