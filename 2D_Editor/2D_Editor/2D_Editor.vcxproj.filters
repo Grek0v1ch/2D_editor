@@ -21,9 +21,15 @@
     <ClCompile Include="source\point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\segment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\point.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\segment.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
