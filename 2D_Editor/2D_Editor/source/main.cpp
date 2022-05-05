@@ -8,7 +8,7 @@ int main() {
 	std::cout << s;
 
 	Triangle t(Point(0, 0), Point(5, 5), Point(2, 2));
-	Triangle f(Point(1, 3), Point(5, 5), Point(0, 2));
+	Triangle f(Point(0, 1), Point(2, 2), Point(5, 5));
 	std::cout << t << f;
 	std::cout << (t == f) << '\n';
 	f = t;

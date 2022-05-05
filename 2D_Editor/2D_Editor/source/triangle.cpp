@@ -29,8 +29,12 @@ Triangle& Triangle::operator=(const Triangle& value) {
 }
 // Переопределение оператора сравнения (оператор проверяет идентичность двух объектов класса).
 bool Triangle::operator==(const Triangle& object) {
-	for (int i = 0; i < 3; i++)
-		if (!(_vertices[i] == object._vertices[i])) return false;
+	for (int i = 0; i < 3; i++) {
+		bool flag = false;
+		for (int j = 0; j < 3; j++)
+			if (_vertices[i] == object._vertices[j]) flag = true;
+		if (!flag) return false;
+	}
 	return true;
 }
 // Переопределение оператора вывода.
