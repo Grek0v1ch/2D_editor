@@ -3,6 +3,7 @@
 #include "../headers/segment.hpp"
 #include "../headers/triangle.hpp"
 #include "../headers/quadrilateral.hpp"
+#include "../headers/ellipse.hpp"
 
 int main() {
 	Segment s(Point(0, 0), Point(5, 5));
@@ -21,5 +22,12 @@ int main() {
 	std::cout << (a == b) << '\n';
 	a = b;
 	std::cout << a << '\n';
+
+	Ellipse c(Point(0, 0), 2, 5);
+	Ellipse d(Point(0, 1), 4, 8);
+	std::cout << c << d;
+	std::cout << (c == d) << '\n';
+	c = d;
+	std::cout << c << '\n';
 	return 0;
-}
+}	
