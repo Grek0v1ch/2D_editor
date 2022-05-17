@@ -1,4 +1,4 @@
-#include "../headers/segment.hpp"
+#include "segment.hpp"
 
 // Переопределение оператора сравнения (оператор проверяет идентичность двух объектов класса).
 bool Segment::operator==(const Segment& object) {

@@ -2,7 +2,7 @@
 #define ELLIPSE_HPP
 
 #include <iostream>
-#include "point.hpp"
+#include "../point/point.hpp"
 
 class Ellipse {
 private:

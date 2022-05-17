@@ -1,4 +1,4 @@
-#include "../headers/ellipse.hpp"
+#include "ellipse.hpp"
 
 // Конструктор
 Ellipse::Ellipse(){

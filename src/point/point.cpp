@@ -1,4 +1,4 @@
-#include "../headers/point.hpp"
+#include "point.hpp"
 
 // Переопределение оператора сравнения (оператор проверяет идентичность двух объектов класса).
 bool Point::operator==(const Point& p) {

@@ -2,7 +2,7 @@
 #define SEGMENT_HPP
 
 #include <iostream>
-#include "point.hpp"
+#include "../point/point.hpp"
 
 class Segment {
 private:
