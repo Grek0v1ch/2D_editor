@@ -16,5 +16,6 @@ add_executable(2D_editor src/main.cpp
 						 src/ellipse/ellipse.cpp
 						 src/ellipse/ellipse.hpp
 						 src/data_structures/dllist.hpp
+						 src/data_structures/stack.hpp
 						 src/data_structures_test/test.hpp
 						 src/data_structures_test/test.cpp)
