@@ -9,6 +9,7 @@ Triangle::Triangle(Point point1, Point point2, Point point3) {
 		_vertices[0] = point1;
 		_vertices[1] = point2;
 		_vertices[2] = point3;
+		if (point1 == point2 || point1 == point3 || point2 == point3) throw 1;
 }
 // Копирования.
 Triangle::Triangle(const Triangle& object) {
