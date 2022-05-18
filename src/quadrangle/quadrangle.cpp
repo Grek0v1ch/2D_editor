@@ -12,6 +12,8 @@ Quadrangle::Quadrangle(Point point1, Point point2, Point point3, Point point4) {
 	_vertices[1] = point2;
 	_vertices[2] = point3;
 	_vertices[3] = point4;
+	if (point1 == point2 || point1 == point3 || point1 == point4 ||
+		point2 == point3 || point2 == point4 || point3 == point4) throw 1;
 }
 
 Quadrangle::Quadrangle(const Quadrangle& object) {
