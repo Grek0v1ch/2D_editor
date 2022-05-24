@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS  "-g")
 
 add_executable(2D_editor src/main.cpp
+						 src/Ishape.hpp
 						 src/point/point.cpp 
 						 src/point/point.hpp
 						 src/segment/segment.cpp
