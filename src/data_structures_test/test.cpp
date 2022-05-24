@@ -1,51 +1,70 @@
 #include "test.hpp"
 
+// Далее идут функции для тестирования методов листа.
+
+// Тестирование метода проверки листа на пустоту.
 bool test_is_empty() {
 	List<int> my_list;
+	// В самом начале лист пустой.
 	if (my_list.is_empty() != true) return false;
 	my_list.push_back(1);
+	// После добавления элемента он перестал быть пустым.
 	if (my_list.is_empty() != false) return false;
 	my_list.remove_last();
+	// После удаления элемента лист снова пустой.
 	if (my_list.is_empty() != true) return false;
 	return true;
 }
 
+// Функция тестирования метода, который возвращает указатель на первый элемент списка.
 bool test_front() {
 	List<int> my_list;
 	my_list.push_back(1);
+	// Добавили один элемент в список, он теперь будет первым.
 	if (my_list.front()->value() != 1) return false;
 	my_list.push_back(2);
+	// Второй элемент добавили в конец, поэтому первый должен остаться таким же.
 	if (my_list.front()->value() != 1) return false;
 	return true;
 }
 
+// Функция тестирования метода, который возвращает указатель на последний элемент списка.
 bool test_back() {
 	List<int> my_list;
 	my_list.push_back(1);
+	// Добавили один элемент в список, он теперь будет последним.
 	if (my_list.back()->value() != 1) return false;
 	my_list.push_back(2);
+	// Второй элемент добавили в конец, поэтому последний должен поменяться.
 	if (my_list.back()->value() != 2) return false;
 	return true;
 }
 
+// Функция тестирует метод удаления первого элемента листа.
 bool test_remove_first() {
 	List<int> my_list;
 	my_list.push_back(1);
 	my_list.push_back(2);
 	my_list.remove_first();
+	// После удаления первого элемента списка, новый первый элемент должен быть равен второму
+	// из списко до удаления.
 	if (my_list.front()->value() != 2) return false;
 	return true;
 }
 
+// Функция тестирует метод удаления последнего элемента листа.
 bool test_remove_last() {
 	List<int> my_list;
 	my_list.push_back(1);
 	my_list.push_back(2);
 	my_list.remove_last();
+	// После удаления последнего элемента списка, первый элемент не должен поменяться.
 	if (my_list.front()->value() != 1) return false;
 	return true;
 }
 
+// Далее идут дву функции, в которым разным способом несколько раз заполняется и очищается лист.
+// После каждой чистки он должен быть пустым.
 bool test_clear_list1() {
 	List<int> my_list;
 	for (int i = 0; i < 10; i++)
@@ -78,6 +97,7 @@ bool test_clear_list2() {
 	return true;
 }
 
+// Функция тестирует метод печати листа в консоль.
 void test_list_print() {
 	List<int> my_list;
 	std::cout << "Должна напечататься \"елочка\"\n";
@@ -93,6 +113,7 @@ void test_list_print() {
 	}
 }
 
+// Функция запускает подряд все тесты для листа.
 void run_all_tests_list() {
 	bool res = true;
 	res = test_is_empty();
@@ -111,6 +132,7 @@ void run_all_tests_list() {
 }
 
 // Далее идут тесты методов стека.
+
 // Тест метода добавления элемента в стек.
 bool test_stack_push() {
 	Stack<int> steck;
