@@ -14,7 +14,7 @@
 #ifdef __unix__
     #include <GL/glut.h>
 #endif
-#ifdef __CYGWIN__
+#ifdef _WIN32
     #include "../build/glut-3.7.6-bin/glut.h"
 #endif
 
