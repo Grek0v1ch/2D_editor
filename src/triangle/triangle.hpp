@@ -15,7 +15,7 @@ public:
 	Triangle(const Triangle&);
 	
 	// Деструктор.
-	~Triangle();
+	~Triangle() {};
 
 	// Переопределение операторов.
 	Triangle& operator=(const Triangle&);

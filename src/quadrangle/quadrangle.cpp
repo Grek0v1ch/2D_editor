@@ -1,29 +1,19 @@
 #include "quadrangle.hpp"
 
-Quadrangle::Quadrangle() {
-	for (int i = 0; i < 4; i++)
-		_vertices[i] = Point(0, 0);
-}
+// Конструкторы.
+Quadrangle::Quadrangle() : _vertices{Point(0, 0), Point(0, 0), Point(0, 0), Point(0, 0)} {}
 
-// В конструкторе есть баг: вершины в массиве должны располагаться по часовой стрелке. На данный
+// !!!Note!!! В конструкторе есть баг: вершины в массиве должны располагаться по часовой стрелке. На данный
 // момент они никак не упорядочены. 
-Quadrangle::Quadrangle(Point point1, Point point2, Point point3, Point point4) {
-	_vertices[0] = point1;
-	_vertices[1] = point2;
-	_vertices[2] = point3;
-	_vertices[3] = point4;
+Quadrangle::Quadrangle(Point point1, Point point2, Point point3, Point point4) : _vertices{point1, point2, point3, point4} {
 	if (point1 == point2 || point1 == point3 || point1 == point4 ||
 		point2 == point3 || point2 == point4 || point3 == point4) throw 1;
 }
 
+// Копирования.
 Quadrangle::Quadrangle(const Quadrangle& object) {
 	for (int i = 0; i < 4; i++)
 		_vertices[i] = object._vertices[i];
-}
-
-Quadrangle::~Quadrangle() {
-	for (int i = 0; i < 4; i++)
-		_vertices[i] = Point(0, 0);
 }
 
 // Переопределение оператора присваивания.
