@@ -9,7 +9,7 @@ private:
 	List<Type> _list;
 public:
 	Stack() : _list(List<Type>()) {}
-	~Stack() { _list.~List(); }
+	~Stack() {}
 	void push(Type key);
 	void pop();
 	Type back();
@@ -28,7 +28,7 @@ void Stack<Type>::pop() {
 template <class Type>
 Type Stack<Type>::back() {
 	if(_list.is_empty()) throw 1;
-	return _list.front()->value();
+	return _list.back()->value();
 }
 
 #endif //STACK_HPP

@@ -109,3 +109,73 @@ void run_all_tests_list() {
 	else
 		std::cout << "Not good";
 }
+
+// Далее идут тесты методов стека.
+// Тест метода добавления элемента в стек.
+bool test_stack_push() {
+	Stack<int> steck;
+	// Добавили элемент.
+	steck.push(1);
+	// Проверили, что он лежит в конце стека. 
+	if (steck.back() != 1) return false;
+	// И так еще раз.
+	steck.push(2);
+	if (steck.back() != 2) return false;
+	return true;
+}
+
+// Тест метода удаления элемента из стека.
+bool test_stack_pop() {
+	Stack<int> steck;
+	// Добавили.
+	steck.push(1);
+	// Удалили.
+	steck.pop();
+	// Проверили, что там больше ничего не лежит.
+	try { steck.back(); }
+	catch(const int& ex){ 
+		std::cout<<"Stack is empty.\n"; 
+	}
+	// Добавили два, один удалили.
+	steck.push(1);
+	steck.push(2);
+	steck.pop();
+	// Проверили, что лежит тот, что добавили первым.
+	if (steck.back() != 1) return false;
+	return true;
+}
+
+// Тест метода взятия значения последнего элемента стека.
+bool test_stack_back() {
+	Stack<int> steck;
+	// Произвольно добавляем/удаляем элементы.
+	steck.push(1);
+	steck.push(2);
+	steck.push(4);
+	steck.pop();
+	steck.pop();
+	steck.push(3);
+	steck.pop();
+	// Проверяем, что алгоритм верный.
+	if (steck.back() != 1) return false;
+	// Удаляем последний элемент, чтобы стек был пустым.
+	steck.pop();
+	// Проверяем, что метод выдает ошибку, т.е. список пуст и возвращать нечего.
+	try { steck.back(); }
+	catch (const int& ex) { 
+		std::cout << "Stack is empty.\n"; 
+	}
+	return true;
+}
+
+// Объединяем все тесты.
+void all_tests_stack() {
+	bool res = true;
+	res = test_stack_push();
+	res = test_stack_pop();
+	res = test_stack_back();
+	if (res)
+		std::cout << "Stack good" << std::endl;
+	else
+		std::cout << "Stack not good";
+}
