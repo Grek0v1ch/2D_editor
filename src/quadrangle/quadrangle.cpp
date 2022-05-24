@@ -42,3 +42,13 @@ std::ostream& operator<<(std::ostream& fout, const Quadrangle& object) {
 		fout << object._vertices[i];
 	return fout;
 }
+
+// Метод рисования четырёхугольника.
+void Quadrangle::draw() {
+	glBegin(GL_LINE_LOOP);
+		glVertex2f(_vertices[0].get_x(), _vertices[0].get_y());
+		glVertex2f(_vertices[1].get_x(), _vertices[1].get_y());
+		glVertex2f(_vertices[2].get_x(), _vertices[2].get_y());
+		glVertex2f(_vertices[3].get_x(), _vertices[3].get_y());
+	glEnd();
+}

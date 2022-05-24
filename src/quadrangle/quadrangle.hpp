@@ -2,9 +2,23 @@
 #define QUADRILATERAL_HPP
 
 #include <iostream>
+
+#ifdef __APPLE__
+	#define GL_SILENCE_DEPRECATION
+	#include <OpenGL/gl.h>
+	#include <GLUT/glut.h>
+#endif
+#ifdef __linux__
+	#include <GL/glut.h>
+#endif
+#ifdef _WIN32
+	#include "../../build/glut-3.7.6-bin/glut.h"
+#endif
+
+#include "../Ishape.hpp"
 #include "../point/point.hpp"
 
-class Quadrangle {
+class Quadrangle : public Ishape {
 private:
 	Point _vertices[4];
 public:
@@ -22,6 +36,9 @@ public:
 	Quadrangle& operator=(const Quadrangle&);
 	bool operator==(const Quadrangle&);
 	friend std::ostream& operator<<(std::ostream&, const Quadrangle&);
+
+	// Метод рисования черырёхугольника.
+	void draw() override;
 };
 
 #endif // QUADRILATERAL_HPP

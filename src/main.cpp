@@ -24,6 +24,7 @@ GLint Width = 512, Height = 512;
 const int CubeSize = 200;
 /* эта функция управляет всем выводом на экран */
 void Display(void) {
+    Quadrangle q(Point(100, 500), Point(400, 500), Point(400, 100), Point(100, 100));
     int left, right, top, bottom;
     left  = (Width - CubeSize) / 2;
     right = left + CubeSize;
@@ -32,12 +33,13 @@ void Display(void) {
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);  
     glColor3ub(255,0,0);
-    glBegin(GL_QUADS);
+    /*glBegin(GL_QUADS);
       glVertex2f(left,bottom);
       glVertex2f(left,top);
       glVertex2f(right,top);
       glVertex2f(right,bottom);
-    glEnd();
+    glEnd();*/
+    q.draw();
     glFinish();
 }
 
