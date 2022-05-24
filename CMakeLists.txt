@@ -26,6 +26,8 @@ add_executable(2D_editor_test src/data_structures_test/main_test.cpp
 
 if(APPLE)
 	target_link_libraries(2D_editor "-framework OpenGL" "-framework GLUT")
+	target_compile_options(2D_editor PRIVATE -Wall -Wextra -Wpedantic)
+	target_compile_options(2D_editor_test PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
 if (LINUX)

@@ -3,8 +3,8 @@
 
 class Ishape {
 public:
-	virtual ~shape() {};
-	
+	virtual ~Ishape() {};
+
 	void virtual draw() = 0;
 };
 
