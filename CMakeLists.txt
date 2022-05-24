@@ -30,7 +30,7 @@ if(APPLE)
 	target_compile_options(2D_editor_test PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
-if (LINUX)
+if (UNIX)
 	find_package(OpenGL REQUIRED)
 	find_package(GLUT REQUIRED)
 	include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )

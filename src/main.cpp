@@ -11,7 +11,7 @@
     #include <OpenGL/gl.h>
     #include <GLUT/glut.h>
 #endif
-#ifdef __unix__
+#ifdef __linux__
     #include <GL/glut.h>
 #endif
 #ifdef _WIN32
