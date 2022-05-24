@@ -1,5 +1,5 @@
-#include "ellipse.hpp"
 #define _USE_MATH_DEFINES
+#include "ellipse.hpp"
 #include <cmath>
 
 // Конструктор.
