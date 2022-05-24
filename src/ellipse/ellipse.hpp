@@ -2,9 +2,23 @@
 #define ELLIPSE_HPP
 
 #include <iostream>
+
+#ifdef __APPLE__
+    #define GL_SILENCE_DEPRECATION
+    #include <OpenGL/gl.h>
+    #include <GLUT/glut.h>
+#endif
+#ifdef __linux__
+    #include <GL/glut.h>
+#endif
+#ifdef _WIN32
+    #include "../build/glut-3.7.6-bin/glut.h"
+#endif
+
+#include "../Ishape.hpp"
 #include "../point/point.hpp"
 
-class Ellipse {
+class Ellipse : public Ishape {
 private:
     Point _center;
     double _minor_semiaxis, _major_semiaxis;
@@ -23,6 +37,9 @@ public:
     Ellipse& operator=(const Ellipse&);
     bool operator==(const Ellipse&);
     friend std::ostream& operator<<(std::ostream&, const Ellipse&);
+
+    // Метод рисования эллипса.
+    void draw() override;
 };
 
 #endif // ELLIPSE_HPP

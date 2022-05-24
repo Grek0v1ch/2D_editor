@@ -1,4 +1,5 @@
 #include "ellipse.hpp"
+#include <cmath>
 
 // Конструктор.
 Ellipse::Ellipse() : _center(Point(0, 0)), _minor_semiaxis(0), _major_semiaxis(0) {}
@@ -34,4 +35,16 @@ Ellipse& Ellipse::operator=(const Ellipse& object) {
 	_minor_semiaxis = object._minor_semiaxis;
 	_major_semiaxis = object._major_semiaxis;
 	return *this;
+}
+
+// Метод рисования эллипса.
+void Ellipse::draw() {
+	int N = 100;
+    double alpha = 2 * M_PI / N;
+	glBegin(GL_LINE_LOOP);
+		// Способ рисования: разбиваем линию эллипса на 100 точек и соединяем их линией.
+		for (int i = 0; i <= N + 1; i++)
+			glVertex2f(_major_semiaxis * cos(alpha * i) + _center.get_x(),
+					   _minor_semiaxis * sin(alpha * i) + _center.get_y());
+	glEnd();
 }
