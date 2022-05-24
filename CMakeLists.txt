@@ -23,3 +23,14 @@ add_executable(2D_editor_test src/data_structures_test/main_test.cpp
 							  src/data_structures/dllist.hpp
 							  src/data_structures_test/test.cpp
 							  src/data_structures_test/test.hpp)
+
+if(APPLE)
+	target_link_libraries(2D_editor "-framework OpenGL" "-framework GLUT")
+endif()
+
+if (LINUX)
+	find_package(OpenGL REQUIRED)
+	find_package(GLUT REQUIRED)
+	include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+	target_link_libraries(2D_editor ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+endif()
