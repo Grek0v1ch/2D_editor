@@ -3,7 +3,7 @@
 
 class Ishape {
 public:
-	virtual draw() = 0;
+	void virtual draw() = 0;
 };
 
 #endif // ISHAPE_HPP
