@@ -18,7 +18,6 @@
 #include "../Ishape.hpp"
 #include "../point/point.hpp"
 
-
 class Triangle : public Ishape{
 private:
 	Point _vertices[3];
