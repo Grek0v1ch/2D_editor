@@ -12,7 +12,7 @@
     #include <GL/glut.h>
 #endif
 #ifdef _WIN32
-    #include "../build/glut-3.7.6-bin/glut.h"
+    #include "../../build/glut-3.7.6-bin/glut.h"
 #endif
 
 #include "../Ishape.hpp"

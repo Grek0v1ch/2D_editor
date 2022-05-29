@@ -19,3 +19,11 @@ Point& Point::operator=(const Point& value) {
 	_y = value._y;
 	return *this;
 }
+
+// Метод рисования точки.
+void Point::draw() {
+	glPointSize(5);
+	glBegin(GL_POINTS);
+	glVertex2f(get_x(), get_y());
+	glEnd();
+}
