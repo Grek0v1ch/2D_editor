@@ -2,12 +2,25 @@
 #define SEGMENT_HPP
 
 #include <iostream>
-#include "../point/point.hpp"
 
-class Segment {
+#ifdef __APPLE__
+	#define GL_SILENCE_DEPRECATION
+	#include <OpenGL/gl.h>
+	#include <GLUT/glut.h>
+#endif
+#ifdef __linux__
+	#include <GL/glut.h>
+#endif
+#ifdef _WIN32
+	#include "../../build/glut-3.7.6-bin/glut.h"
+#endif
+
+#include "../point/point.hpp"
+#include "../Ishape.hpp"
+
+class Segment : public Ishape {
 private:
 	Point _point1, _point2;
-
 public:
 	// Конструкторы.
 	Segment() : _point1(0, 0), _point2(0, 0) {};
@@ -22,6 +35,9 @@ public:
 	bool operator==(const Segment&);
 	Segment& operator=(const Segment&);
 	friend std::ostream& operator<<(std::ostream&, const Segment&);
+
+	// Метод рисования отрезка.
+	void draw() override;
 };
 
 #endif // SEGMENT_HPP

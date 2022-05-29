@@ -20,3 +20,12 @@ Segment& Segment::operator=(const Segment& object) {
 	_point2 = object._point2;
 	return *this;
 }
+
+// Метод рисования отрезка.
+void Segment::draw() {
+	glLineWidth(5);
+	glBegin(GL_LINES);
+	glVertex2f(_point1.get_x(), _point1.get_y());
+	glVertex2f(_point2.get_x(), _point2.get_y());
+	glEnd();
+}
