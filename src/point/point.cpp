@@ -22,8 +22,11 @@ Point& Point::operator=(const Point& value) {
 
 // Метод рисования точки.
 void Point::draw() {
-	glPointSize(5);
+	// Переменная здает размер точки при рисовании.
+	const int POINT_SIZE = 5;
+
+	glPointSize(POINT_SIZE);
 	glBegin(GL_POINTS);
-	glVertex2f(get_x(), get_y());
+		glVertex2f(get_x(), get_y());
 	glEnd();
 }
