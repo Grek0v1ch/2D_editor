@@ -21,12 +21,78 @@
 /* начальная ширина и высота окна */
 GLint Width = 512, Height = 512;
 
+// Переменная отвечает за переопредление текущего окна. Если она равна true - вызывается
+// окно консоли с меню. Если она равна false - будет вызвано окно GLUT.
+bool MENU = true;
+
+// Функция считываем нажатие клавиши enter пользователем.
+void read_enter() {
+    // Так как нельзя запретить пользователю нажимать друге клавиши, как метод защиты счтываем
+    // все что введет пользователь.
+    std::string buff;
+    getline(std::cin, buff);
+}
+
+// Вывод пунктов второго меню и выбор пункта.
+int choise_main_menu() {
+    int choice;
+    system("clear");
+    std::cout << "Main Menu\n"
+              << "1 - Add item\n"
+              << "2 - Delete item\n"
+              << "3 - Quit\n"
+              << "Please choose: ";
+    std::cin >> choice;
+    // Убираем мусор из потока.
+    std::cin.get();
+    return choice;
+}
+
+void main_menu() {
+    int choice;
+    while (true) {
+        choice = choise_main_menu();
+        switch (choice) {
+            case 1:
+                std::cout << "Add item\n";
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 2:
+                std::cout << "Delete item\n";
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 3:
+                MENU = false;
+                system("clear");
+                return;
+            default:
+                std::cout << "No such item\nPress enter...";
+                read_enter();
+                continue;
+        }
+    }
+}
+
+
 void Display(void) {
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3ub(255, 0, 0);
 
+    if (MENU) main_menu();
+
     glFinish();
+}
+
+// Эта функция перерисовывает картинку через опеределенный интервал времени (в этой программе 33
+// милисекунды). В ней просто дублируется часть функции Display, отвечающей за отрисовку.
+void TimerMove(int value) {
+    if (MENU) main_menu();
+
+    glutPostRedisplay(); 
+    glutTimerFunc(33, TimerMove, 1);
 }
 
 /* Функция вызывается при изменении размеров окна */
@@ -52,6 +118,7 @@ void Keyboard(unsigned char key, int x, int y) {
     #define ESCAPE '\033'
 
     if (key == ESCAPE) exit(0);
+    if (key == 109) MENU = true;
 }
 
 /* Главный цикл приложения */
@@ -63,5 +130,6 @@ int main(int argc, char* argv[]) {
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
     glutKeyboardFunc(Keyboard);
+    glutTimerFunc(33, TimerMove, 1);
     glutMainLoop();
 }
