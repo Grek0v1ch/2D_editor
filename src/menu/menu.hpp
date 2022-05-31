@@ -11,7 +11,7 @@
 // Переменная отвечает за переопредление текущего окна. Если она равна true - вызывается
 // окно консоли с меню. Если она равна false - будет вызвано окно GLUT.
 extern bool _MENU_;
-extern List<std::unique_ptr<Ishape>> _objects_;
+extern List<Ishape*> _objects_;
 
 void main_menu();
 

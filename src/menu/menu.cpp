@@ -5,7 +5,7 @@
 // окно консоли с меню. Если она равна false - будет вызвано окно GLUT.
 bool _MENU_ = true;
 
-List<std::unique_ptr<Ishape>> _objects_;
+List<Ishape*> _objects_;
 
 // Функция считываем нажатие клавиши enter пользователем.
 void read_enter() {
@@ -15,15 +15,15 @@ void read_enter() {
     getline(std::cin, buff);
 }
 
-std::unique_ptr<Ishape> input_point() {
+Ishape* input_point() {
 	double x, y;
 	std::cout << "Введите координаты Х и У: ";
 	std::cin >> x >> y;
 	std::cin.get();
-	return std::unique_ptr<Ishape>(new Point(x, y));
+	return new Point(x, y);
 }
 
-std::unique_ptr<Ishape> input_segment() {
+Ishape* input_segment() {
 	double x1, y1, x2, y2;
 	std::cout << "Введите координаты точки начала отрезка, Х и У: ";
 	std::cin >> x1 >> y1;
@@ -31,10 +31,10 @@ std::unique_ptr<Ishape> input_segment() {
 	std::cin >> x2 >> y2;
 	std::cin.get();
 	system("clear");
-	return std::unique_ptr<Ishape>(new Segment(Point(x1, y1), Point(x2, y2)));
+	return new Segment(Point(x1, y1), Point(x2, y2));
 }
 
-std::unique_ptr<Ishape> input_triangle() {
+Ishape* input_triangle() {
 	double x, y;
 	Point vertices[3];
 	for (int i = 0; i < 3; i++) {
@@ -43,10 +43,10 @@ std::unique_ptr<Ishape> input_triangle() {
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
-	return std::unique_ptr<Ishape>(new Triangle(vertices[0], vertices[1], vertices[2]));
+	return new Triangle(vertices[0], vertices[1], vertices[2]);
 }
 
-std::unique_ptr<Ishape> input_quadrangle() {
+Ishape* input_quadrangle() {
 	double x, y;
 	Point vertices[4];
 	for (int i = 0; i < 4; i++) {
@@ -55,11 +55,10 @@ std::unique_ptr<Ishape> input_quadrangle() {
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
-	return std::unique_ptr<Ishape>(new Quadrangle(vertices[0], vertices[1], 
-												  vertices[2], vertices[3]));
+	return new Quadrangle(vertices[0], vertices[1], vertices[2], vertices[3]);
 }
 
-std::unique_ptr<Ishape> input_ellipse() {
+Ishape* input_ellipse() {
 	double x, y;
 	double minor_semiaxis, major_semiaxis;
 	std::cout << "Введите точку центра эллипса, Х и У: ";
@@ -69,7 +68,7 @@ std::unique_ptr<Ishape> input_ellipse() {
 	std::cout << "Введите большую полуось: ";
 	std::cin >> major_semiaxis;
 	std::cin.get();
-	return std::unique_ptr<Ishape>(new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis));
+	return new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis);
 }
 
 int choise_add_shape_menu() {
@@ -106,32 +105,29 @@ int choise_main_menu() {
 
 void add_shape_menu() {
     int choice;
-    std::unique_ptr<Ishape> object;
+    Ishape* object;
     while (true) {
         choice = choise_add_shape_menu();
         switch (choice) {
             case 1:
             	object = input_point();
+            	_objects_.push_back(object);
                 break;
             case 2:
-                std::cout << "Add Point\n";
-                std::cout << "Press enter...";
-                read_enter();
+                object = input_segment();
+            	_objects_.push_back(object);
                 break;
             case 3:
-                std::cout << "Add Point\n";
-                std::cout << "Press enter...";
-                read_enter();
+                object = input_triangle();
+            	_objects_.push_back(object);
                 break;
             case 4:
-                std::cout << "Add Point\n";
-                std::cout << "Press enter...";
-                read_enter();
+                object = input_quadrangle();
+            	_objects_.push_back(object);
                 break;
             case 5:
-                std::cout << "Add Point\n";
-                std::cout << "Press enter...";
-                read_enter();
+                object = input_ellipse();
+            	_objects_.push_back(object);
                 break;
             case 6:
                 system("clear");

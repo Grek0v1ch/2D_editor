@@ -22,12 +22,30 @@
 /* начальная ширина и высота окна */
 GLint Width = 512, Height = 512;
 
+void draw_objects() {
+    auto iter = _objects_.front();
+    while (iter) {
+        iter->value()->draw();
+        iter = iter->next();
+    }
+}
+
+void clear_objects() {
+    auto iter = _objects_.front();
+    while (iter) {
+        auto temp = iter->next();
+        delete iter->value();
+        iter = temp;
+    }
+}
+
 void Display(void) {
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3ub(255, 0, 0);
 
     if (_MENU_) main_menu();
+    draw_objects();
 
     glFinish();
 }
@@ -63,7 +81,10 @@ void Reshape(GLint w, GLint h) {
 void Keyboard(unsigned char key, int x, int y) {
     #define ESCAPE '\033'
 
-    if (key == ESCAPE) exit(0);
+    if (key == ESCAPE) {
+        clear_objects();
+        exit(0);
+    }
     if (key == 109) _MENU_ = true;
 }
 
