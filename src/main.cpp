@@ -86,6 +86,12 @@ void Keyboard(unsigned char key, int x, int y) {
         exit(0);
     }
     if (key == 109) _MENU_ = true;
+    if (key == 122) {
+        if (_objects_.is_empty()) return;
+        auto item = _objects_.back();
+        delete item->value();
+        _objects_.remove_last();
+    }
 }
 
 /* Главный цикл приложения */
