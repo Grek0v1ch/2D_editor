@@ -14,7 +14,7 @@ private:
 	Node* _next;
 	Node* _previous;
 public:
-	Node(Type value) : _value(value), _next(0), _previous(0) {}
+	Node(const Type& value) : _value(value), _next(0), _previous(0) {}
 	Node<Type>* next() const { return _next; }
 	Node<Type>* pervious() const { return _previous; }
 	Type value() const { return _value; }
@@ -44,9 +44,9 @@ public:
 	pnode<Type> back() { return _last; }
 
 	// Добавляет элемент в конец списка.
-	void push_back(Type);
+	void push_back(const Type&);
 	// Добавляет элемент в начало списка.
-	void push_front(Type);
+	void push_front(const Type&);
 
 	// Функция удаляет первый элемент из ненулевого списка.
 	void remove_first();
@@ -74,7 +74,7 @@ List<Type>::~List() {
 
 // Добавляет элемент в конец списка.
 template <class Type> 
-void List<Type>::push_back(Type value) {
+void List<Type>::push_back(const Type& value) {
 	pnode<Type> new_el = new Node<Type>{value};
 	if (is_empty()) {
 		_first = new_el;
@@ -88,7 +88,7 @@ void List<Type>::push_back(Type value) {
 
 // Добавляет элемент в начало списка.
 template <class Type> 
-void List<Type>::push_front(Type value) {
+void List<Type>::push_front(const Type& value) {
 	if (is_empty()) {
 		push_back(value);
 		return;
