@@ -17,7 +17,9 @@ add_executable(2D_editor src/main.cpp
 						 src/ellipse/ellipse.cpp
 						 src/ellipse/ellipse.hpp
 						 src/data_structures/dllist.hpp
-						 src/data_structures/stack.hpp)
+						 src/data_structures/stack.hpp
+						 src/menu/menu.cpp
+						 src/menu/menu.hpp)
 
 add_executable(2D_editor_test src/data_structures_test/main_test.cpp
 							  src/data_structures/dllist.hpp
@@ -26,8 +28,8 @@ add_executable(2D_editor_test src/data_structures_test/main_test.cpp
 
 if(APPLE)
 	target_link_libraries(2D_editor "-framework OpenGL" "-framework GLUT")
-	target_compile_options(2D_editor PRIVATE -Wall -Wextra -Wpedantic)
-	target_compile_options(2D_editor_test PRIVATE -Wall -Wextra -Wpedantic)
+	target_compile_options(2D_editor PRIVATE -Wall)
+	target_compile_options(2D_editor_test PRIVATE -Wall)
 endif()
 
 if (UNIX)
