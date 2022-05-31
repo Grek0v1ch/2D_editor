@@ -25,12 +25,73 @@ GLint Width = 512, Height = 512;
 // окно консоли с меню. Если она равна false - будет вызвано окно GLUT.
 bool MENU = true;
 
+List<std::unique_ptr<Ishape>> object;
+
 // Функция считываем нажатие клавиши enter пользователем.
 void read_enter() {
     // Так как нельзя запретить пользователю нажимать друге клавиши, как метод защиты счтываем
     // все что введет пользователь.
     std::string buff;
     getline(std::cin, buff);
+}
+
+int choise_add_shape_menu() {
+    int choice;
+    system("clear");
+    std::cout << "Add Shape Menu\n"
+              << "1 - Add Point\n"
+              << "2 - Add Segment\n"
+              << "3 - Add Triangle\n"
+              << "4 - Add Quadrangle\n"
+              << "5 - Add Ellipse\n"
+              << "6 - Quit\n"
+              << "Please choose: ";
+    std::cin >> choice;
+    // Убираем мусор из потока.
+    std::cin.get();
+    return choice;
+}
+
+void add_shape_menu() {
+    int choice;
+    while (true) {
+        choice = choise_add_shape_menu();
+        switch (choice) {
+            case 1:
+                std::cout << "Add Point\n";
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 2:
+                std::cout << "Add Point\n";
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 3:
+                std::cout << "Add Point\n";
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 4:
+                std::cout << "Add Point\n";
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 5:
+                std::cout << "Add Point\n";
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 6:
+                MENU = false;
+                system("clear");
+                return;
+            default:
+                std::cout << "No such item\nPress enter...";
+                read_enter();
+                continue;
+        }
+    }
 }
 
 // Вывод пунктов второго меню и выбор пункта.
@@ -54,9 +115,7 @@ void main_menu() {
         choice = choise_main_menu();
         switch (choice) {
             case 1:
-                std::cout << "Add item\n";
-                std::cout << "Press enter...";
-                read_enter();
+                add_shape_menu();
                 break;
             case 2:
                 std::cout << "Delete item\n";
