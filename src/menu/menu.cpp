@@ -1,5 +1,21 @@
+#include "../point/point.hpp"
+#include "../segment/segment.hpp"
+#include "../triangle/triangle.hpp"
+#include "../quadrangle/quadrangle.hpp"
+#include "../ellipse/ellipse.hpp"
 #include "menu.hpp"
 #include <iostream>
+#include <string>
+
+#ifdef __APPLE__
+	#define CLEAR_CONSOLE "clear"
+#endif
+#ifdef __linux__
+	#define CLEAR_CONSOLE "clear"
+#endif
+#ifdef _WIN32
+	#define CLEAR_CONSOLE "cls"
+#endif
 
 // Переменная отвечает за переопредление текущего окна. Если она равна true - вызывается
 // окно консоли с меню. Если она равна false - будет вызвано окно GLUT.
@@ -17,20 +33,26 @@ void read_enter() {
 
 Ishape* input_point() {
 	double x, y;
-	std::cout << "Введите координаты Х и У: ";
-	std::cin >> x >> y;
+	std::cout << "Enter coordinates\nХ: ";
+	std::cin >> x;
+	std::cout << "Y: ";
+	std::cin >> y;
 	std::cin.get();
 	return new Point(x, y);
 }
 
 Ishape* input_segment() {
 	double x1, y1, x2, y2;
-	std::cout << "Введите координаты точки начала отрезка, Х и У: ";
-	std::cin >> x1 >> y1;
-	std::cout << "Введите координаты точки конца отрезка, Х и У: ";
-	std::cin >> x2 >> y2;
+	std::cout << "Enter the coordinates start of segment\nХ: ";
+	std::cin >> x1;
+	std::cout << "Y: ";
+	std::cin >> y1;
+	std::cout << "Enter the coordinates end of segment\nХ: ";
+	std::cin >> x2;
+	std::cout << "Y: ";
+	std::cin >> y2;
 	std::cin.get();
-	system("clear");
+	system(CLEAR_CONSOLE);
 	return new Segment(Point(x1, y1), Point(x2, y2));
 }
 
@@ -38,8 +60,10 @@ Ishape* input_triangle() {
 	double x, y;
 	Point vertices[3];
 	for (int i = 0; i < 3; i++) {
-		std::cout << "Введите координаты вершины " << i + 1 << ", Х и У: ";
-		std::cin >> x >> y;
+		std::cout << "Enter the coordinates of the vertex " << i + 1 << "\nХ: ";
+		std::cin >> x;
+		std::cout << "Y: ";
+		std::cin >> y;
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
@@ -50,8 +74,10 @@ Ishape* input_quadrangle() {
 	double x, y;
 	Point vertices[4];
 	for (int i = 0; i < 4; i++) {
-		std::cout << "Введите координаты вершины " << i + 1 << ", Х и У: ";
-		std::cin >> x >> y;
+		std::cout << "Enter the coordinates of the vertex " << i + 1 <<  "\nХ: ";
+		std::cin >> x;
+		std::cout << "Y: ";
+		std::cin >> y;
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
@@ -61,11 +87,13 @@ Ishape* input_quadrangle() {
 Ishape* input_ellipse() {
 	double x, y;
 	double minor_semiaxis, major_semiaxis;
-	std::cout << "Введите точку центра эллипса, Х и У: ";
-	std::cin >> x >> y;
-	std::cout << "Введите малую полуось: ";
+	std::cout << "Enter the coordinates of the center of ellipse\nХ: ";
+	std::cin >> x;
+	std::cout << "Y: ";
+	std::cin >> y;
+	std::cout << "Enter the minor semiaxis: ";
 	std::cin >> minor_semiaxis;
-	std::cout << "Введите большую полуось: ";
+	std::cout << "Enter the major semiaxis: ";
 	std::cin >> major_semiaxis;
 	std::cin.get();
 	return new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis);
@@ -73,7 +101,7 @@ Ishape* input_ellipse() {
 
 int choise_add_shape_menu() {
     int choice;
-    system("clear");
+    system(CLEAR_CONSOLE);
     std::cout << "Add Shape Menu\n"
               << "1 - Add Point\n"
               << "2 - Add Segment\n"
@@ -91,7 +119,7 @@ int choise_add_shape_menu() {
 // Вывод пунктов второго меню и выбор пункта.
 int choise_main_menu() {
     int choice;
-    system("clear");
+    system(CLEAR_CONSOLE);
     std::cout << "Main Menu\n"
               << "1 - Add item\n"
               << "2 - Delete item\n"
@@ -130,7 +158,7 @@ void add_shape_menu() {
             	_objects_.push_back(object);
                 break;
             case 6:
-                system("clear");
+                system(CLEAR_CONSOLE);
                 return;
             default:
                 std::cout << "No such item\nPress enter...";
@@ -155,7 +183,7 @@ void main_menu() {
                 break;
             case 3:
                 _MENU_ = false;
-                system("clear");
+                system(CLEAR_CONSOLE);
                 return;
             default:
                 std::cout << "No such item\nPress enter...";
