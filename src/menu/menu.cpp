@@ -33,7 +33,7 @@ void read_enter() {
 
 Ishape* input_point() {
 	double x, y;
-	std::cout << "Enter coordinates\nХ: ";
+	std::cout << "Enter coordinates\nX: ";
 	std::cin >> x;
 	std::cout << "Y: ";
 	std::cin >> y;
@@ -43,11 +43,11 @@ Ishape* input_point() {
 
 Ishape* input_segment() {
 	double x1, y1, x2, y2;
-	std::cout << "Enter the coordinates start of segment\nХ: ";
+	std::cout << "Enter the coordinates start of segment\nX: ";
 	std::cin >> x1;
 	std::cout << "Y: ";
 	std::cin >> y1;
-	std::cout << "Enter the coordinates end of segment\nХ: ";
+	std::cout << "Enter the coordinates end of segment\nX: ";
 	std::cin >> x2;
 	std::cout << "Y: ";
 	std::cin >> y2;
@@ -60,7 +60,7 @@ Ishape* input_triangle() {
 	double x, y;
 	Point vertices[3];
 	for (int i = 0; i < 3; i++) {
-		std::cout << "Enter the coordinates of the vertex " << i + 1 << "\nХ: ";
+		std::cout << "Enter the coordinates of the vertex " << i + 1 << "\nX: ";
 		std::cin >> x;
 		std::cout << "Y: ";
 		std::cin >> y;
@@ -74,7 +74,7 @@ Ishape* input_quadrangle() {
 	double x, y;
 	Point vertices[4];
 	for (int i = 0; i < 4; i++) {
-		std::cout << "Enter the coordinates of the vertex " << i + 1 <<  "\nХ: ";
+		std::cout << "Enter the coordinates of the vertex " << i + 1 <<  "\nX: ";
 		std::cin >> x;
 		std::cout << "Y: ";
 		std::cin >> y;
@@ -87,7 +87,7 @@ Ishape* input_quadrangle() {
 Ishape* input_ellipse() {
 	double x, y;
 	double minor_semiaxis, major_semiaxis;
-	std::cout << "Enter the coordinates of the center of ellipse\nХ: ";
+	std::cout << "Enter the coordinates of the center of ellipse\nX: ";
 	std::cin >> x;
 	std::cout << "Y: ";
 	std::cin >> y;
