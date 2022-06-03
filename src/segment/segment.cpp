@@ -21,6 +21,26 @@ Segment& Segment::operator=(const Segment& object) {
 	return *this;
 }
 
+// Функция проверяет пересекаются ли отрезки.
+bool Segment::intersect(const Segment& sec) const {
+	#define SIGN(x) (((x) < 0) ? -1 : ((x) > 0) ? 1 : 0)
+
+	double comp_z1 = (_point2.get_x() - _point1.get_x()) * (sec._point1.get_y() - _point1.get_y())
+		- (_point2.get_y() - _point1.get_y()) * (sec._point1.get_x() - _point1.get_x());
+	double comp_z2 = (sec._point2.get_y() - _point1.get_y()) * (_point2.get_x() - _point1.get_x())
+		- (sec._point2.get_x() - _point1.get_x()) * (_point2.get_y() - _point1.get_y());
+
+	if (SIGN(comp_z1) == SIGN(comp_z2) && comp_z1 * comp_z2 != 0) return false;
+
+	comp_z1 = (sec._point2.get_x() - sec._point1.get_x()) * (_point2.get_y() - sec._point1.get_y())
+		- (sec._point2.get_y() - sec._point1.get_y()) * (_point2.get_x() - sec._point1.get_x());
+	comp_z2 = (_point1.get_y() - sec._point1.get_y()) * (sec._point2.get_x() - sec._point1.get_x())
+		- (_point1.get_x() - sec._point1.get_x()) * (sec._point2.get_y() - sec._point1.get_y());
+
+	if (SIGN(comp_z1) == SIGN(comp_z2) && comp_z1 * comp_z2 != 0) return false;
+	return true;
+}
+
 // Метод рисования отрезка.
 void Segment::draw() {
 	glBegin(GL_LINES);
