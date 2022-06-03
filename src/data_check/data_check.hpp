@@ -4,7 +4,7 @@
 #include <iostream>
 
 //корректный ввод натурального числа
-void check_value(int& num);
+void check_value(double& num);
 
 //корректный ввод вещественного числа
 void input_menu_command(int& command);

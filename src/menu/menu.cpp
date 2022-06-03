@@ -3,6 +3,7 @@
 #include "../triangle/triangle.hpp"
 #include "../quadrangle/quadrangle.hpp"
 #include "../ellipse/ellipse.hpp"
+#include "../data_check/data_check.hpp"
 #include "menu.hpp"
 #include <iostream>
 #include <string>
@@ -34,9 +35,9 @@ void read_enter() {
 Ishape* input_point() {
 	double x, y;
 	std::cout << "Enter coordinates\nX: ";
-	std::cin >> x;
+    check_value(x);
 	std::cout << "Y: ";
-	std::cin >> y;
+    check_value(y);
 	std::cin.get();
 	return new Point(x, y);
 }
@@ -44,13 +45,13 @@ Ishape* input_point() {
 Ishape* input_segment() {
 	double x1, y1, x2, y2;
 	std::cout << "Enter the coordinates start of segment\nX: ";
-	std::cin >> x1;
+    check_value(x1);;
 	std::cout << "Y: ";
-	std::cin >> y1;
+    check_value(y1);
 	std::cout << "Enter the coordinates end of segment\nX: ";
-	std::cin >> x2;
+    check_value(x2);
 	std::cout << "Y: ";
-	std::cin >> y2;
+    check_value(y2);
 	std::cin.get();
 	system(CLEAR_CONSOLE);
 	return new Segment(Point(x1, y1), Point(x2, y2));
@@ -61,9 +62,9 @@ Ishape* input_triangle() {
 	Point vertices[3];
 	for (int i = 0; i < 3; i++) {
 		std::cout << "Enter the coordinates of the vertex " << i + 1 << "\nX: ";
-		std::cin >> x;
+        check_value(x);
 		std::cout << "Y: ";
-		std::cin >> y;
+        check_value(y);
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
@@ -75,9 +76,9 @@ Ishape* input_quadrangle() {
 	Point vertices[4];
 	for (int i = 0; i < 4; i++) {
 		std::cout << "Enter the coordinates of the vertex " << i + 1 <<  "\nX: ";
-		std::cin >> x;
+        check_value(x);
 		std::cout << "Y: ";
-		std::cin >> y;
+        check_value(y);
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
@@ -88,13 +89,13 @@ Ishape* input_ellipse() {
 	double x, y;
 	double minor_semiaxis, major_semiaxis;
 	std::cout << "Enter the coordinates of the center of ellipse\nX: ";
-	std::cin >> x;
+    check_value(x);
 	std::cout << "Y: ";
-	std::cin >> y;
+    check_value(y);
 	std::cout << "Enter the minor semiaxis: ";
-	std::cin >> minor_semiaxis;
+    check_value(minor_semiaxis);
 	std::cout << "Enter the major semiaxis: ";
-	std::cin >> major_semiaxis;
+    check_value(major_semiaxis);
 	std::cin.get();
 	return new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis);
 }
@@ -110,7 +111,7 @@ int choise_add_shape_menu() {
               << "5 - Add Ellipse\n"
               << "6 - Quit\n"
               << "Please choose: ";
-    std::cin >> choice;
+    input_menu_command(choice);
     // Убираем мусор из потока.
     std::cin.get();
     return choice;
@@ -125,7 +126,7 @@ int choise_main_menu() {
               << "2 - Delete item\n"
               << "3 - Quit\n"
               << "Please choose: ";
-    std::cin >> choice;
+    input_menu_command(choice);
     // Убираем мусор из потока.
     std::cin.get();
     return choice;
