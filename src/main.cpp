@@ -8,101 +8,141 @@
 #include "menu/menu.hpp"
 
 #ifdef __APPLE__
-    #define GL_SILENCE_DEPRECATION
-    #include <OpenGL/gl.h>
-    #include <GLUT/glut.h>
+	#define GL_SILENCE_DEPRECATION
+	#include <OpenGL/gl.h>
+	#include <GLUT/glut.h>
 #endif
 #ifdef __linux__
-    #include <GL/glut.h>
+	#include <GL/glut.h>
 #endif
 #ifdef _WIN32
-    #include "../build/glut-3.7.6-bin/glut.h"
+	#include "../build/glut-3.7.6-bin/glut.h"
 #endif
 
 /* начальная ширина и высота окна */
-GLint Width = 512, Height = 512;
+GLint Width = 640, Height = 640;
 
 void draw_objects() {
-    auto iter = _objects_.front();
-    while (iter) {
-        iter->value()->draw();
-        iter = iter->next();
-    }
+	auto iter = _objects_.front();
+	while (iter) {
+		iter->value()->draw();
+		iter = iter->next();
+	}
 }
 
 void clear_objects() {
-    auto iter = _objects_.front();
-    while (iter) {
-        auto temp = iter->next();
-        delete iter->value();
-        iter = temp;
-    }
+	auto iter = _objects_.front();
+	while (iter) {
+		auto temp = iter->next();
+		delete iter->value();
+		iter = temp;
+	}
+}
+
+void draw_main_window() {
+	glColor3ub(0, 0, 0);
+	for (int i = 0; i < Width; i += 20) {
+		if (i == 0)
+			glLineWidth(2);
+		else
+			glLineWidth(1);
+
+		glBegin(GL_LINES);
+			glVertex2f(i, Height);
+			glVertex2f(i, -Height);
+		glEnd();
+		
+		glBegin(GL_LINES);
+			glVertex2f(-i, Height);
+			glVertex2f(-i, -Height);
+		glEnd();
+	}
+
+	for (int i = 0; i < Height; i += 20) {
+		if (i == 0)
+			glLineWidth(2);
+		else
+			glLineWidth(1);
+
+		glBegin(GL_LINES);
+			glVertex2f(Width, i);
+			glVertex2f(-Width, i);
+		glEnd();
+		
+		glBegin(GL_LINES);
+			glVertex2f(Width, -i);
+			glVertex2f(-Width, -i);
+		glEnd();
+	}
 }
 
 void Display(void) {
-    glClearColor(0, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glColor3ub(255, 0, 0);
+	glClearColor(1, 1, 1, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3ub(255, 0, 0);
 
-    if (_MENU_) main_menu();
-    draw_objects();
+	draw_main_window();
+	if (_MENU_) main_menu();
+	draw_objects();
 
-    glFinish();
+	glFinish();
 }
 
 // Эта функция перерисовывает картинку через опеределенный интервал времени (в этой программе 33
 // милисекунды). В ней просто дублируется часть функции Display, отвечающей за отрисовку.
 void TimerMove(int value) {
-    if (_MENU_) main_menu();
+	// draw_main_window();
+	if (_MENU_) main_menu();
+	draw_objects();
 
-    glutPostRedisplay(); 
-    glutTimerFunc(33, TimerMove, 1);
+	glutPostRedisplay(); 
+	glutTimerFunc(33, TimerMove, 1);
 }
 
 /* Функция вызывается при изменении размеров окна */
 void Reshape(GLint w, GLint h) {
-    Width = w;
-    Height = h;
-    /* устанавливаем размеры области отображения */
-    glViewport(0, 0, w, h);
+	Width = w;
+	Height = h;
+	/* устанавливаем размеры области отображения */
+	glViewport(0, 0, w, h);
 
-    /* ортографическая проекция */
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    // Команда устанавливает центр координат в центре отоброжаемого окна. Также масштаб координат
-    // теперь приравнивается к масштабу пикселей.
-    gluOrtho2D(-w / 2, w / 2, -h / 2, h / 2);
+	/* ортографическая проекция */
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	// Команда устанавливает центр координат в центре отоброжаемого окна. Также масштаб координат
+	// теперь приравнивается к масштабу пикселей.
+	gluOrtho2D(-w / 2, w / 2, -h / 2, h / 2);
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 
 /* Функция обрабатывает сообщения от клавиатуры */
 void Keyboard(unsigned char key, int x, int y) {
-    #define ESCAPE '\033'
+	#define ESCAPE '\033'
 
-    if (key == ESCAPE) {
-        clear_objects();
-        exit(0);
-    }
-    if (key == 109) _MENU_ = true;
-    if (key == 122) {
-        if (_objects_.is_empty()) return;
-        auto item = _objects_.back();
-        delete item->value();
-        _objects_.remove_last();
-    }
+	if (key == ESCAPE) {
+		clear_objects();
+		exit(0);
+	}
+	if (key == 109) _MENU_ = true;
+	if (key == 122) {
+		if (_objects_.is_empty()) return;
+		auto item = _objects_.back();
+		delete item->value();
+		_objects_.remove_last();
+	}
 }
 
 /* Главный цикл приложения */
 int main(int argc, char* argv[]) {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB);
-    glutInitWindowSize(Width, Height);
-    glutCreateWindow("2D editor");
-    glutDisplayFunc(Display);
-    glutReshapeFunc(Reshape);
-    glutKeyboardFunc(Keyboard);
-    glutTimerFunc(33, TimerMove, 1);
-    glutMainLoop();
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_RGB);
+	glutInitWindowSize(Width, Height);
+	glutCreateWindow("2D editor");
+	glutDisplayFunc(Display);
+	glutReshapeFunc(Reshape);
+	glutKeyboardFunc(Keyboard);
+	glutTimerFunc(33, TimerMove, 1);
+	glutMainLoop();
 }
