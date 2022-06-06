@@ -1,23 +1,23 @@
 #include "data_check.hpp"
 
-// Ôóíêöèÿ ïğîâåğÿåò êîğğåêòíîñòü ââåäåííûõ çíà÷åíèé äëÿ ãåîìåòğè÷åñêèõ îáúåêòîâ.
+// Ğ¤ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€ÑĞµÑ‚ ĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ğ¾ÑÑ‚ÑŒ Ğ²Ğ²ĞµĞ´ĞµĞ½Ğ½Ñ‹Ñ… Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğ¹ Ğ´Ğ»Ñ Ğ³ĞµĞ¾Ğ¼ĞµÑ‚Ñ€Ğ¸Ñ‡ĞµÑĞºĞ¸Ñ… Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ².
 void check_value(double& num) {
 	std::cin >> num;
 	while (std::cin.fail()) {
 		std::cin.clear();
 		std::cin.ignore(32767, '\n');
-		std::cout << "Enter a rational number\n";
+		std::cout << "Enter a rational number: ";
 		std::cin >> num;
 	}
 }
 
-// Ôóíêöèÿ ïğîâåğÿåò êîğğåêòíîñòü ââåäåííîé êîìàíäû.
+// Ğ¤ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€ÑĞµÑ‚ ĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ğ¾ÑÑ‚ÑŒ Ğ²Ğ²ĞµĞ´ĞµĞ½Ğ½Ğ¾Ğ¹ ĞºĞ¾Ğ¼Ğ°Ğ½Ğ´Ñ‹.
 void input_menu_command(int& command) {
 	std::cin >> command;
 	while (std::cin.fail()) {
 		std::cin.clear();
 		std::cin.ignore(32767, '\n');
-		std::cout << "Enter the correct command number\n";
+		std::cout << "Enter the correct command number: ";
 		std::cin >> command;
 	}
 }

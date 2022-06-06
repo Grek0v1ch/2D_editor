@@ -18,6 +18,8 @@ add_executable(2D_editor src/main.cpp
 						 src/ellipse/ellipse.hpp
 						 src/data_structures/dllist.hpp
 						 src/data_structures/stack.hpp
+						 src/data_check/data_check.cpp
+						 src/data_check/data_check.hpp
 						 src/menu/menu.cpp
 						 src/menu/menu.hpp)
 
