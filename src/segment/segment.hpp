@@ -43,9 +43,11 @@ public:
 	построить вектора к двум концам другого, то их векторное произведение с направляющим вектором
 	первого отрезка должно быть разных знаков.
 	Подробнее: https://habr.com/ru/post/267037/
-*/
-
+	*/
 	bool intersect(const Segment& sec) const;
+
+	// Метод возвращает тип объекта.
+	std::string type() const override { return "segment"; };
 
 	// Метод рисования отрезка.
 	void draw() override;

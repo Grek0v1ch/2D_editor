@@ -38,6 +38,9 @@ public:
 	double get_x() const { return _x; }
 	double get_y() const { return _y; }
 
+	// Метод возвращает тип объекта.
+	std::string type() const override { return "point"; };
+
 	// Метод рисования точки.
 	void draw() override;
 };

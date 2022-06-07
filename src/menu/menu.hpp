@@ -2,6 +2,7 @@
 #define MENU_HPP
 
 #include "../data_structures/dllist.hpp"
+#include "../data_structures/stack.hpp"
 
 // Переменная отвечает за переопредление текущего окна. Если она равна true - вызывается
 // окно консоли с меню. Если она равна false - будет вызвано окно GLUT.

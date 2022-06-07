@@ -36,6 +36,9 @@ public:
 	bool operator==(const Triangle&);
 	friend std::ostream& operator<<(std::ostream&, const Triangle&);
 
+	// Метод возвращает тип объекта.
+	std::string type() const override { return "trinagle"; };
+
 	// Методе рисования треугольника.
 	void draw() override;	
 };

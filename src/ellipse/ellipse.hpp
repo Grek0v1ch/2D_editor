@@ -38,6 +38,9 @@ public:
     bool operator==(const Ellipse&);
     friend std::ostream& operator<<(std::ostream&, const Ellipse&);
 
+    // Метод возвращает тип объекта.
+    std::string type() const override { return std::string("ellipse"); };
+
     // Метод рисования эллипса.
     void draw() override;
 };
