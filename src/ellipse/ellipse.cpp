@@ -42,6 +42,7 @@ Ellipse& Ellipse::operator=(const Ellipse& object) {
 void Ellipse::draw() {
 	int N = 100;
     double alpha = 2 * M_PI / N;
+    glLineWidth(3);
 	glBegin(GL_LINE_LOOP);
 		// Способ рисования: разбиваем линию эллипса на 100 точек и соединяем их линией.
 		for (int i = 0; i <= N + 1; i++)

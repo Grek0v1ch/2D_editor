@@ -43,6 +43,7 @@ bool Segment::intersect(const Segment& sec) const {
 
 // Метод рисования отрезка.
 void Segment::draw() {
+	glLineWidth(3);
 	glBegin(GL_LINES);
 		glVertex2f(_point1.get_x(), _point1.get_y());
 		glVertex2f(_point2.get_x(), _point2.get_y());
