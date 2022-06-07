@@ -40,6 +40,9 @@ public:
 	// Метод возвращает тип объекта.
 	std::string type() const override { return "quadrangle"; };
 
+	void zoom(const double koef) override { _vertices[0].zoom(koef), _vertices[1].zoom(koef),
+											_vertices[2].zoom(koef), _vertices[3].zoom(koef); }
+
 	// Метод рисования черырёхугольника.
 	void draw() override;
 };

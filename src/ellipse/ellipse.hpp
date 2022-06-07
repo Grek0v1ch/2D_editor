@@ -41,6 +41,9 @@ public:
     // Метод возвращает тип объекта.
     std::string type() const override { return std::string("ellipse"); };
 
+    void zoom(const double koef) override { _minor_semiaxis *= koef, _major_semiaxis *= koef,
+                                            _center.zoom(koef); }
+
     // Метод рисования эллипса.
     void draw() override;
 };

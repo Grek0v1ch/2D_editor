@@ -49,6 +49,8 @@ public:
 	// Метод возвращает тип объекта.
 	std::string type() const override { return "segment"; };
 
+	void zoom(const double koef) override { _point1.zoom(koef), _point2.zoom(koef); }
+
 	// Метод рисования отрезка.
 	void draw() override;
 };

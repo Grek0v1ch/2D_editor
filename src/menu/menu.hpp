@@ -9,6 +9,7 @@
 extern bool _MENU_;
 extern List<Ishape*> _objects_;
 extern Stack<Ishape*> _buff_;
+extern int _zoom_koef_;
 
 void main_menu();
 

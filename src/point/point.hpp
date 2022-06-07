@@ -41,6 +41,8 @@ public:
 	// Метод возвращает тип объекта.
 	std::string type() const override { return "point"; };
 
+	void zoom(const double koef) override { _x *= koef; _y *= koef; }
+
 	// Метод рисования точки.
 	void draw() override;
 };

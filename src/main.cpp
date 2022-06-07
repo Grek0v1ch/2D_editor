@@ -21,7 +21,15 @@
 #endif
 
 /* начальная ширина и высота окна */
-GLint Width = 640, Height = 640;
+GLint Width = 1280, Height = 1280;
+
+void change_scale(const double koef) {
+	auto iter = _objects_.front();
+	while (iter) {
+		iter->value()->zoom(koef);
+		iter = iter->next();
+	}
+}
 
 // Функция рисует все фигуры, которые есть в списке.
 void draw_objects() {
@@ -82,7 +90,7 @@ void return_object() {
 void draw_main_window() {
 	glColor3ub(0, 0, 0);
 	// Сначала рисуем все вертикальные полосы, по две за итерацию цикла.
-	for (int i = 0; i < Width; i += 20) {
+	for (int i = 0; i < Width; i += _zoom_koef_) {
 		if (i == 0)
 			glLineWidth(2);
 		else
@@ -99,7 +107,7 @@ void draw_main_window() {
 		glEnd();
 	}
 	// Потом рисуем все горизонтальные полосы, по две за итерацию цикла.
-	for (int i = 0; i < Height; i += 20) {
+	for (int i = 0; i < Height; i += _zoom_koef_) {
 		if (i == 0)
 			glLineWidth(2);
 		else
@@ -168,12 +176,29 @@ void Keyboard(unsigned char key, int x, int y) {
 		clear_buff();
 		exit(0);
 	}
+	if (key == GLUT_KEY_UP) _zoom_koef_ *= 2;
 	// Если нажата клавиша m происходит переключение с окна OpenGL на меню.
 	if (key == 109) _MENU_ = true;
 	// Если нажата клавиша z то объект удаляется.
 	if (key == 122) del_object();
 	// Если нажата клавиша x то объект возвращается.
 	if (key == 120) return_object();
+}
+
+// Функция обрабатывает сообщения от клавиатуры.
+void SpecKeyboard(int key, int x, int y) {
+    // Если нажата стрелочка вверх, то увеличиваем масштаб в 2 раза, пока он не станет равен 512
+    // (ограничение по максимому).
+    if (key == GLUT_KEY_UP && _zoom_koef_ < Height / 4) {
+    	_zoom_koef_ *= 2;
+    	change_scale(2);
+    } 
+    // Если нажата стрелочка вниз, то уменьшаем в два раза (здесь аналогично ограничение по 
+    // минимуму).
+    if (key == GLUT_KEY_DOWN && _zoom_koef_ > 8) {
+		_zoom_koef_ /= 2;
+    	change_scale(0.5);
+    } 
 }
 
 /* Главный цикл приложения */
@@ -185,6 +210,7 @@ int main(int argc, char* argv[]) {
 	glutDisplayFunc(Display);
 	glutReshapeFunc(Reshape);
 	glutKeyboardFunc(Keyboard);
+	glutSpecialFunc(SpecKeyboard);
 	glutTimerFunc(33, TimerMove, 1);
 	glutMainLoop();
 }
