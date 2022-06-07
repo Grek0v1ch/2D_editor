@@ -7,6 +7,7 @@
 // окно консоли с меню. Если она равна false - будет вызвано окно GLUT.
 extern bool _MENU_;
 extern List<Ishape*> _objects_;
+extern Stack<Ishape*> _buff_;
 
 void main_menu();
 

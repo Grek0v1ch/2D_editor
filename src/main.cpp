@@ -23,8 +23,6 @@
 /* начальная ширина и высота окна */
 GLint Width = 640, Height = 640;
 
-Stack<Ishape*> _buff_;
-
 // Функция рисует все фигуры, которые есть в списке.
 void draw_objects() {
 	auto iter = _objects_.front();
