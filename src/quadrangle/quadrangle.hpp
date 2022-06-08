@@ -1,6 +1,7 @@
 #ifndef QUADRILATERAL_HPP
 #define QUADRILATERAL_HPP
 
+#include "../segment/segment.hpp"
 #include <iostream>
 
 #ifdef __APPLE__
@@ -50,6 +51,11 @@ public:
 
 	// Метод рисования черырёхугольника.
 	void draw() override;
+
+	// Диагональ из левой верхней вершины.
+	Segment left_diagonal();
+	// Диагональ из из правой верхней вершины.
+	Segment right_diagonal();
 };
 
 #endif // QUADRILATERAL_HPP

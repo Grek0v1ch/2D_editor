@@ -74,3 +74,15 @@ void Quadrangle::draw() {
 		glVertex2f(_vertices[3].get_x(), _vertices[3].get_y());
 	glEnd();
 }
+
+//Диагональ из левой верхней вершины.
+Segment Quadrangle::left_diagonal() {
+	Segment diagonal(_vertices[0], _vertices[2]);
+	return diagonal;
+}
+
+// Диагональ из правой верхней вершины.
+Segment Quadrangle::right_diagonal() {
+	Segment diagonal(_vertices[1], _vertices[3]);
+	return diagonal;
+}
