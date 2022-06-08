@@ -1,6 +1,7 @@
 #ifndef QUADRILATERAL_HPP
 #define QUADRILATERAL_HPP
 
+#include "segment.hpp"
 #include <iostream>
 
 #ifdef __APPLE__

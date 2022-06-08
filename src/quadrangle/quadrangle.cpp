@@ -1,4 +1,5 @@
 #include "quadrangle.hpp"
+#include <algorithm>
 
 // Метод сортирует вершины четырехугольника по часовой стрелке.
 // !!note!! В методе баг, в случае с вогнутыми четырехугольниками, может построить не тот
@@ -22,7 +23,6 @@ void Quadrangle::vertices_sort() {
 
 // Конструкторы.
 Quadrangle::Quadrangle() : _vertices{Point(0, 0), Point(0, 0), Point(0, 0), Point(0, 0)} {}
-
 
 Quadrangle::Quadrangle(Point point1, Point point2, Point point3, Point point4) :
 	_vertices{point1, point2, point3, point4} {
@@ -73,4 +73,10 @@ void Quadrangle::draw() {
 		glVertex2f(_vertices[2].get_x(), _vertices[2].get_y());
 		glVertex2f(_vertices[3].get_x(), _vertices[3].get_y());
 	glEnd();
+}
+
+// Метод рисования четырёхугольника.
+void Quadrangle::draw_left_diagonal() {
+	glLineWidth(3);
+	Segment
 }
