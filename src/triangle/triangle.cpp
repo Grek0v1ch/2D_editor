@@ -47,3 +47,111 @@ void Triangle::draw() {
 		glVertex2f(_vertices[2].get_x(), _vertices[2].get_y());
 	glEnd();
 }
+
+// Медиана из вершины A на сторону BC.
+Segment Triangle::medianA(){
+	// Противоположная сторона треугольника, к которой ищем медиану.
+	Segment opposite_side(_vertices[1], _vertices[2]);
+	// Медиана.
+	Segment median(_vertices[0], opposite_side.div_in_ratio(1.0, 1.0));
+	return median;
+}
+
+// Медиана из вершины B на сторону AC.
+Segment Triangle::medianB(){
+	// Противоположная сторона треугольника, к которой ищем медиану.
+	Segment opposite_side(_vertices[0], _vertices[2]);
+	// Медиана.
+	Segment median(_vertices[1], opposite_side.div_in_ratio(1.0, 1.0));
+	return median;
+}
+
+// Медиана из вершины C на сторону AB.
+Segment Triangle::medianC(){
+	// Противоположная сторона треугольника, к которой ищем медиану.
+	Segment opposite_side(_vertices[0], _vertices[1]);
+	// Медиана.
+	Segment median(_vertices[2], opposite_side.div_in_ratio(1.0, 1.0));
+	return median;
+}
+
+// Высота из вершины A на сторону BC.
+Segment Triangle::heightA() {
+	Point start_height, end_height; 
+	start_height = _vertices[0];
+	// Координаты конца высоты.
+	double height_x, height_y;
+	// Коэффициенты в уравнениях прямых.
+	double a, b, c1, c2;
+
+	// Находим коэффициенты.
+	a = _vertices[2].get_y() - _vertices[1].get_y();
+	b = -1 * (_vertices[2].get_x() - _vertices[1].get_x());
+	c1 = -_vertices[1].get_x() * a + _vertices[1].get_y() * (-1 * b);
+	c2 = -1 * b * start_height.get_x() + a * start_height.get_y();
+
+	// Находим координаты конца высоты.
+	height_x = (-1 * b * c2 - c1 * a) / (a * a + b * b);
+	if (a == 0) height_y = _vertices[1].get_y();
+	else height_y = (c2 + b * height_x) / a;
+
+	// Строим высоту.
+	end_height = Point(height_x, height_y);
+	Segment height(start_height, end_height);
+
+	return height;
+}
+
+// Высота из вершины B на сторону AC.
+Segment Triangle::heightB() {
+	Point start_height, end_height;
+	start_height = _vertices[1];
+	// Координаты конца высоты.
+	double height_x, height_y;
+	// Коэффициенты в уравнениях прямых.
+	double a, b, c1, c2;
+
+	// Находим коэффициенты.
+	a = _vertices[2].get_y() - _vertices[0].get_y();
+	b = -1 * (_vertices[2].get_x() - _vertices[0].get_x());
+	c1 = -_vertices[0].get_x() * a + _vertices[0].get_y() * (-1 * b);
+	c2 = -1 * b * start_height.get_x() + a * start_height.get_y();
+
+	// Находим координаты конца высоты.
+	height_x = (-1 * b * c2 - c1 * a) / (a * a + b * b);
+	if (a == 0) height_y = _vertices[0].get_y();
+	else height_y = (c2 + b * height_x) / a;
+
+	// Строим высоту.
+	end_height = Point(height_x, height_y);
+	Segment height(start_height, end_height);
+
+	return height;
+}
+
+// Высота из вершины C на сторону AB.
+Segment Triangle::heightC() {
+	Point start_height, end_height;
+	start_height = _vertices[2];
+	// Координаты конца высоты.
+	double height_x, height_y;
+	// Коэффициенты в уравнениях прямых.
+	double a, b, c1, c2;
+
+	// Находим коэффициенты.
+	a = _vertices[1].get_y() - _vertices[0].get_y();
+	b = -1 * (_vertices[1].get_x() - _vertices[0].get_x());
+	c1 = -_vertices[0].get_x() * a + _vertices[0].get_y() * (-1 * b);
+	c2 = -1 * b * start_height.get_x() + a * start_height.get_y();
+
+	// Находим координаты конца высоты.
+	height_x = (-1 * b * c2 - c1 * a) / (a * a + b * b);
+	if (a == 0) height_y = _vertices[0].get_y();
+	else height_y = (c2 + b * height_x) / a;
+
+	// Строим высоту.
+	end_height = Point(height_x, height_y);
+	Segment height(start_height, end_height);
+
+	return height;
+}

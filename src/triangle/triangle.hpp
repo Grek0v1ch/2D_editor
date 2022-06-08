@@ -17,6 +17,7 @@
 
 #include "../Ishape.hpp"
 #include "../point/point.hpp"
+#include "../segment/segment.hpp"
 
 class Triangle : public Ishape{
 private:
@@ -44,6 +45,20 @@ public:
 
 	// Методе рисования треугольника.
 	void draw() override;	
+
+	// Медиана из вершины A на сторону BC
+	Segment medianA();
+	// Медиана из вершины B на сторону AC
+	Segment medianB();
+	// Медиана из вершины C на сторону AB
+	Segment medianC();
+
+	// Высота из вершины A на сторону BC
+	Segment heightA();
+	// Высота из вершины B на сторону AC
+	Segment heightB();
+	// Высота из вершины C на сторону AB
+	Segment heightC();
 };
 
 #endif // TRIANGLE_HPP
