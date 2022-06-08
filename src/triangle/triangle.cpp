@@ -47,3 +47,30 @@ void Triangle::draw() {
 		glVertex2f(_vertices[2].get_x(), _vertices[2].get_y());
 	glEnd();
 }
+
+// Медиана из вершины A на сторону BC
+Segment Triangle::medianA(){
+	// Противоположная сторона треугольника, к которой ищем медиану
+	Segment opposite_side(_vertices[1], _vertices[2]);
+	// Медиана
+	Segment median(_vertices[0], opposite_side.div_in_ratio(1.0, 1.0));
+	return median;
+}
+
+// Медиана из вершины B на сторону AC
+Segment Triangle::medianB(){
+	// Противоположная сторона треугольника, к которой ищем медиану
+	Segment opposite_side(_vertices[0], _vertices[2]);
+	// Медиана
+	Segment median(_vertices[1], opposite_side.div_in_ratio(1.0, 1.0));
+	return median;
+}
+
+// Медиана из вершины C на сторону AB
+Segment Triangle::medianC(){
+	// Противоположная сторона треугольника, к которой ищем медиану
+	Segment opposite_side(_vertices[0], _vertices[1]);
+	// Медиана
+	Segment median(_vertices[2], opposite_side.div_in_ratio(1.0, 1.0));
+	return median;
+}
