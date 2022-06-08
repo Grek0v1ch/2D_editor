@@ -53,6 +53,9 @@ public:
 
 	// Метод рисования отрезка.
 	void draw() override;
+
+	// Точка, делящая отрезок в отношении.
+	Point div_in_ratio(const double, const double);
 };
 
 #endif // SEGMENT_HPP

@@ -176,7 +176,6 @@ void Keyboard(unsigned char key, int x, int y) {
 		clear_buff();
 		exit(0);
 	}
-	if (key == GLUT_KEY_UP) _zoom_koef_ *= 2;
 	// Если нажата клавиша m происходит переключение с окна OpenGL на меню.
 	if (key == 109) _MENU_ = true;
 	// Если нажата клавиша z то объект удаляется.
@@ -195,7 +194,7 @@ void SpecKeyboard(int key, int x, int y) {
     } 
     // Если нажата стрелочка вниз, то уменьшаем в два раза (здесь аналогично ограничение по 
     // минимуму).
-    if (key == GLUT_KEY_DOWN && _zoom_koef_ > 8) {
+    if (key == GLUT_KEY_DOWN && _zoom_koef_ > 10) {
 		_zoom_koef_ /= 2;
     	change_scale(0.5);
     } 

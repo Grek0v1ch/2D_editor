@@ -43,50 +43,81 @@ Ishape* input_point() {
 	std::cout << "Y: ";
     check_value(y);
 	std::cin.get();
-	return new Point(x, y);
+    Ishape* object = new Point(x, y);
+    object->zoom(_zoom_koef_);
+	return object;
 }
 
 Ishape* input_segment() {
 	double x1, y1, x2, y2;
-	std::cout << "Enter the coordinates start of segment\nX: ";
-    check_value(x1);;
-	std::cout << "Y: ";
-    check_value(y1);
-	std::cout << "Enter the coordinates end of segment\nX: ";
-    check_value(x2);
-	std::cout << "Y: ";
-    check_value(y2);
-	std::cin.get();
-	system(CLEAR_CONSOLE);
-	return new Segment(Point(x1, y1), Point(x2, y2));
+    while (true) {
+    	std::cout << "Enter the coordinates start of segment\nX: ";
+        check_value(x1);;
+    	std::cout << "Y: ";
+        check_value(y1);
+    	std::cout << "Enter the coordinates end of segment\nX: ";
+        check_value(x2);
+    	std::cout << "Y: ";
+        check_value(y2);
+    	std::cin.get();
+        Ishape* object;
+        try {
+            object = new Segment(Point(x1, y1), Point(x2, y2));
+        } catch (...) {
+            std::cout << "Error: matching points\n";
+            continue;
+        }
+        object->zoom(_zoom_koef_);
+        return object;
+    }
 }
 
 Ishape* input_triangle() {
 	double x, y;
 	Point vertices[3];
-	for (int i = 0; i < 3; i++) {
-		std::cout << "Enter the coordinates of the vertex " << i + 1 << "\nX: ";
-        check_value(x);
-		std::cout << "Y: ";
-        check_value(y);
-		vertices[i] = Point(x, y);
-	}
-	std::cin.get();
-	return new Triangle(vertices[0], vertices[1], vertices[2]);
+    while (true) {
+    	for (int i = 0; i < 3; i++) {
+    		std::cout << "Enter the coordinates of the vertex " << i + 1 << "\nX: ";
+            check_value(x);
+    		std::cout << "Y: ";
+            check_value(y);
+    		vertices[i] = Point(x, y);
+    	}
+    	std::cin.get();
+        Ishape* object;
+        try {
+            object = new Triangle(vertices[0], vertices[1], vertices[2]);
+        } catch (...) {
+            std::cout << "Error: matching points\n";
+            continue;
+        }
+        object->zoom(_zoom_koef_);
+        return object;
+    }
 }
 
 Ishape* input_quadrangle() {
 	double x, y;
 	Point vertices[4];
-	for (int i = 0; i < 4; i++) {
-		std::cout << "Enter the coordinates of the vertex " << i + 1 <<  "\nX: ";
-        check_value(x);
-		std::cout << "Y: ";
-        check_value(y);
-		vertices[i] = Point(x, y);
-	}
-	std::cin.get();
-	return new Quadrangle(vertices[0], vertices[1], vertices[2], vertices[3]);
+    while (true) {
+    	for (int i = 0; i < 4; i++) {
+    		std::cout << "Enter the coordinates of the vertex " << i + 1 <<  "\nX: ";
+            check_value(x);
+    		std::cout << "Y: ";
+            check_value(y);
+    		vertices[i] = Point(x, y);
+    	}
+    	std::cin.get();
+        Ishape* object;
+        try {
+            object = new Quadrangle(vertices[0], vertices[1], vertices[2], vertices[3]);
+        } catch (...) {
+            std::cout << "Error: matching points\n";
+            continue;
+        }
+        object->zoom(_zoom_koef_);
+        return object;
+    }
 }
 
 Ishape* input_ellipse() {
@@ -101,7 +132,9 @@ Ishape* input_ellipse() {
 	std::cout << "Enter the major semiaxis: ";
     check_value(major_semiaxis);
 	std::cin.get();
-	return new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis);
+    Ishape* object = new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis);
+    object->zoom(_zoom_koef_);
+    return object;
 }
 
 int choise_add_shape_menu() {
