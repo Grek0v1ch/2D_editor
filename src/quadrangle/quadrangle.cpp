@@ -1,13 +1,34 @@
 #include "quadrangle.hpp"
 
+// Метод сортирует вершины четырехугольника по часовой стрелке.
+// !!note!! В методе баг, в случае с вогнутыми четырехугольниками, может построить не тот
+// четырехугольник, что задумывал юзер.
+void Quadrangle::vertices_sort() {
+	// Метод сортирует сначала точки по координате у, а потом упорядычевает попарно по иксу.
+	std::sort(_vertices, _vertices + 4, [](Point first, Point second) {
+		return first.get_y() > second.get_y();
+	});
+	if (_vertices[0].get_x() > _vertices[1].get_x()) {
+		Point temp = _vertices[0];
+		_vertices[0] = _vertices[1];
+		_vertices[1] = temp;
+	}
+	if (_vertices[3].get_x() > _vertices[2].get_x()) {
+		Point temp = _vertices[2];
+		_vertices[2] = _vertices[3];
+		_vertices[3] = temp;
+	}
+}
+
 // Конструкторы.
 Quadrangle::Quadrangle() : _vertices{Point(0, 0), Point(0, 0), Point(0, 0), Point(0, 0)} {}
 
-// !!!Note!!! В конструкторе есть баг: вершины в массиве должны располагаться по часовой стрелке. На данный
-// момент они никак не упорядочены. 
-Quadrangle::Quadrangle(Point point1, Point point2, Point point3, Point point4) : _vertices{point1, point2, point3, point4} {
+
+Quadrangle::Quadrangle(Point point1, Point point2, Point point3, Point point4) :
+	_vertices{point1, point2, point3, point4} {
 	if (point1 == point2 || point1 == point3 || point1 == point4 ||
 		point2 == point3 || point2 == point4 || point3 == point4) throw 1;
+	vertices_sort();
 }
 
 // Копирования.
