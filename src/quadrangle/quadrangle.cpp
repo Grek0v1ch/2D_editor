@@ -74,9 +74,3 @@ void Quadrangle::draw() {
 		glVertex2f(_vertices[3].get_x(), _vertices[3].get_y());
 	glEnd();
 }
-
-// Метод рисования четырёхугольника.
-void Quadrangle::draw_left_diagonal() {
-	glLineWidth(3);
-	Segment
-}
