@@ -26,7 +26,7 @@ List<Ishape*> _objects_;
 
 Stack<Ishape*> _buff_;
 
-int _zoom_koef_ = 1;
+int _zoom_koef_ = 10;
 
 // Функция считываем нажатие клавиши enter пользователем.
 void read_enter() {
