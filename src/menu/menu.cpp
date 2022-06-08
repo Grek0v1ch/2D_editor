@@ -26,7 +26,7 @@ List<Ishape*> _objects_;
 
 Stack<Ishape*> _buff_;
 
-int _zoom_koef_ = 10;
+int _zoom_koef_ = 1;
 
 // Функция считываем нажатие клавиши enter пользователем.
 void read_enter() {
@@ -43,7 +43,9 @@ Ishape* input_point() {
 	std::cout << "Y: ";
     check_value(y);
 	std::cin.get();
-	return new Point(x, y);
+    Ishape* object = new Point(x, y);
+    object->zoom(_zoom_koef_);
+	return object;
 }
 
 Ishape* input_segment() {
@@ -57,8 +59,9 @@ Ishape* input_segment() {
 	std::cout << "Y: ";
     check_value(y2);
 	std::cin.get();
-	system(CLEAR_CONSOLE);
-	return new Segment(Point(x1, y1), Point(x2, y2));
+    Ishape* object = new Segment(Point(x1, y1), Point(x2, y2));
+    object->zoom(_zoom_koef_);
+    return object;
 }
 
 Ishape* input_triangle() {
@@ -72,7 +75,9 @@ Ishape* input_triangle() {
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
-	return new Triangle(vertices[0], vertices[1], vertices[2]);
+    Ishape* object = new Triangle(vertices[0], vertices[1], vertices[2]);
+    object->zoom(_zoom_koef_);
+    return object;
 }
 
 Ishape* input_quadrangle() {
@@ -86,7 +91,9 @@ Ishape* input_quadrangle() {
 		vertices[i] = Point(x, y);
 	}
 	std::cin.get();
-	return new Quadrangle(vertices[0], vertices[1], vertices[2], vertices[3]);
+    Ishape* object = new Quadrangle(vertices[0], vertices[1], vertices[2], vertices[3]);
+    object->zoom(_zoom_koef_);
+    return object;
 }
 
 Ishape* input_ellipse() {
@@ -101,7 +108,9 @@ Ishape* input_ellipse() {
 	std::cout << "Enter the major semiaxis: ";
     check_value(major_semiaxis);
 	std::cin.get();
-	return new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis);
+    Ishape* object = new Ellipse(Point(x, y), minor_semiaxis, major_semiaxis);
+    object->zoom(_zoom_koef_);
+    return object;
 }
 
 int choise_add_shape_menu() {

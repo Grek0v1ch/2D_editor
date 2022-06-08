@@ -90,7 +90,7 @@ void return_object() {
 void draw_main_window() {
 	glColor3ub(0, 0, 0);
 	// Сначала рисуем все вертикальные полосы, по две за итерацию цикла.
-	for (int i = 0; i < Width; i += _zoom_koef_) {
+	for (int i = 0; i < Width; i += _zoom_koef_ * 10) {
 		if (i == 0)
 			glLineWidth(2);
 		else
@@ -107,7 +107,7 @@ void draw_main_window() {
 		glEnd();
 	}
 	// Потом рисуем все горизонтальные полосы, по две за итерацию цикла.
-	for (int i = 0; i < Height; i += _zoom_koef_) {
+	for (int i = 0; i < Height; i += _zoom_koef_ * 10) {
 		if (i == 0)
 			glLineWidth(2);
 		else
@@ -176,7 +176,6 @@ void Keyboard(unsigned char key, int x, int y) {
 		clear_buff();
 		exit(0);
 	}
-	if (key == GLUT_KEY_UP) _zoom_koef_ *= 2;
 	// Если нажата клавиша m происходит переключение с окна OpenGL на меню.
 	if (key == 109) _MENU_ = true;
 	// Если нажата клавиша z то объект удаляется.
@@ -189,7 +188,7 @@ void Keyboard(unsigned char key, int x, int y) {
 void SpecKeyboard(int key, int x, int y) {
     // Если нажата стрелочка вверх, то увеличиваем масштаб в 2 раза, пока он не станет равен 512
     // (ограничение по максимому).
-    if (key == GLUT_KEY_UP && _zoom_koef_ < Height / 4) {
+    if (key == GLUT_KEY_UP && _zoom_koef_ < Height / 40) {
     	_zoom_koef_ *= 2;
     	change_scale(2);
     } 
