@@ -49,3 +49,13 @@ void Segment::draw() {
 		glVertex2f(_point2.get_x(), _point2.get_y());
 	glEnd();
 }
+
+// Точка, делящая отрезок в отношении part1/part2.
+Point Segment::div_in_ratio(const double part1, const double part2) {
+	double ratio = part1 / part2;
+	double x, y;
+	x = (_point1.get_x() + ratio * _point2.get_x()) / (1 + ratio);
+	y = (_point1.get_y() + ratio * _point2.get_y()) / (1 + ratio);
+	Point div(x, y);
+	return div;
+}
