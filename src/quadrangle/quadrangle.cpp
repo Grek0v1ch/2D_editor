@@ -86,3 +86,11 @@ Segment Quadrangle::right_diagonal() {
 	Segment diagonal(_vertices[1], _vertices[3]);
 	return diagonal;
 }
+
+// Средняя линия.
+Segment Quadrangle::middle_line() {
+	Segment left_side(_vertices[0], _vertices[3]),
+		right_side(_vertices[1], _vertices[2]);
+	Segment mid__line(left_side.div_in_ratio(1.0, 1.0), right_side.div_in_ratio(1.0, 1.0));
+	return mid_line;
+}

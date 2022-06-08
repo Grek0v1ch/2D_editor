@@ -56,6 +56,9 @@ public:
 	Segment left_diagonal();
 	// Диагональ из из правой верхней вершины.
 	Segment right_diagonal();
+
+	// Средняя линия.
+	Segment middle_line();
 };
 
 #endif // QUADRILATERAL_HPP
