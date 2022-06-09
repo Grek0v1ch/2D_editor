@@ -7,14 +7,14 @@
 void Quadrangle::vertices_sort() {
 	// Метод сортирует сначала точки по координате у, а потом упорядычевает попарно по иксу.
 	std::sort(_vertices, _vertices + 4, [](Point first, Point second) {
-		return first.get_y() > second.get_y();
+		return std::abs(first.get_y()) > std::abs(second.get_y());
 	});
-	if (_vertices[0].get_x() > _vertices[1].get_x()) {
+	if (std::abs(_vertices[0].get_x()) > std::abs(_vertices[1].get_x())) {
 		Point temp = _vertices[0];
 		_vertices[0] = _vertices[1];
 		_vertices[1] = temp;
 	}
-	if (_vertices[3].get_x() > _vertices[2].get_x()) {
+	if (std::abs(_vertices[3].get_x()) > std::abs(_vertices[2].get_x())) {
 		Point temp = _vertices[2];
 		_vertices[2] = _vertices[3];
 		_vertices[3] = temp;
