@@ -38,6 +38,8 @@ public:
     bool operator==(const Ellipse&);
     friend std::ostream& operator<<(std::ostream&, const Ellipse&);
 
+    void print(const double) const override;
+
     // Метод возвращает тип объекта.
     std::string type() const override { return std::string("ellipse"); };
 

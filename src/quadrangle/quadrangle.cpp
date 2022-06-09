@@ -64,6 +64,12 @@ std::ostream& operator<<(std::ostream& fout, const Quadrangle& object) {
 	return fout;
 }
 
+void Quadrangle::print(const double koef) const {
+	std::cout << "Quadrangle, vertices:\n";
+	for (int i = 0; i < 4; i++)
+		_vertices[i].print(koef);
+}
+
 // Метод рисования четырёхугольника.
 void Quadrangle::draw() {
 	glLineWidth(3);

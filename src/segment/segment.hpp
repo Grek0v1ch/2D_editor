@@ -46,6 +46,8 @@ public:
 	*/
 	bool intersect(const Segment& sec) const;
 
+	void print(const double) const override;
+
 	// Метод возвращает тип объекта.
 	std::string type() const override { return "segment"; };
 

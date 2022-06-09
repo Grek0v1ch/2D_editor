@@ -41,6 +41,12 @@ bool Segment::intersect(const Segment& sec) const {
 	return true;
 }
 
+void Segment::print(const double koef) const {
+	std::cout << "Segment, points:\n";
+	_point1.print(koef);
+	_point2.print(koef);
+}
+
 // Метод рисования отрезка.
 void Segment::draw() {
 	glLineWidth(3);

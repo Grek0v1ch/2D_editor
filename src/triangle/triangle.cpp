@@ -38,6 +38,13 @@ std::ostream& operator<<(std::ostream& fout, const Triangle& object) {
 	return fout;
 }
 
+void Triangle::print(const double koef) const {
+	std::cout << "Triangle, vertices:\n";
+	_vertices[0].print(koef);
+	_vertices[1].print(koef);
+	_vertices[2].print(koef);
+}
+
 // Метод рисования треугольника.
 void Triangle::draw() {
 	glLineWidth(3);

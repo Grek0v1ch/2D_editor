@@ -43,6 +43,8 @@ public:
 	bool operator==(const Quadrangle&);
 	friend std::ostream& operator<<(std::ostream&, const Quadrangle&);
 
+	void print(const double) const override;
+
 	// Метод возвращает тип объекта.
 	std::string type() const override { return "quadrangle"; };
 

@@ -37,8 +37,10 @@ public:
 	bool operator==(const Triangle&);
 	friend std::ostream& operator<<(std::ostream&, const Triangle&);
 
+	void print(const double) const override;
+
 	// Метод возвращает тип объекта.
-	std::string type() const override { return "trinagle"; };
+	std::string type() const override { return "triangle"; };
 
 	void zoom(const double koef) override { _vertices[0].zoom(koef), _vertices[1].zoom(koef),
 											_vertices[2].zoom(koef); }

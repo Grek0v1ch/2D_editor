@@ -20,6 +20,10 @@ Point& Point::operator=(const Point& value) {
 	return *this;
 }
 
+void Point::print(const double koef) const {
+	std::cout << "Point: x = " << _x / koef << ", y = " << _y / koef << '\n';
+}
+
 // Метод рисования точки.
 void Point::draw() {
 	// Переменная здает размер точки при рисовании.

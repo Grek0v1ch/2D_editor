@@ -29,6 +29,14 @@ std::ostream& operator<<(std::ostream& fout, const Ellipse& object) {
 	return fout;
 }
 
+void Ellipse::print(const double koef) const {
+	std::cout << "Ellipse, center:\n";
+	_center.print(koef);
+	std::cout << "minor semiaxis = " << _minor_semiaxis / koef
+			  << "\nmajor semiaxis = " << _major_semiaxis / koef
+			  << '\n';
+}
+
 // Переопределение оператора присваивания.
 Ellipse& Ellipse::operator=(const Ellipse& object) {
 	if (&object == this) return *this;

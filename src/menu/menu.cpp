@@ -137,6 +137,60 @@ Ishape* input_ellipse() {
     return object;
 }
 
+int choise_triangle_geometry_menu() {
+    int choice;
+    system(CLEAR_CONSOLE);
+    std::cout << "Triangle Geometry Menu\n"
+              << "1 - Median from vertex 1\n"
+              << "2 - Median from vertex 2\n"
+              << "3 - Median from vertex 3\n"
+              << "4 - Height from vertex 1\n"
+              << "5 - Height from vertex 2\n"
+              << "6 - Height from vertex 3\n"
+              << "7 - Middle line\n"
+              << "8 - Quit\n"
+              << "Please choose: ";
+    input_menu_command(choice);
+    // Убираем мусор из потока.
+    std::cin.get();
+    return choice;
+}
+
+int choise_quadrangle_geometry_menu() {
+    int choice;
+    system(CLEAR_CONSOLE);
+    std::cout << "Quadrangle Geometry Menu\n"
+              << "1 - Left diagonal\n"
+              << "2 - Righr diagonal\n"
+              << "3 - Middle line\n"
+              << "4 - Quit\n"
+              << "Please choose: ";
+    input_menu_command(choice);
+    // Убираем мусор из потока.
+    std::cin.get();
+    return choice;
+}
+
+int choise_geometry_menu() {
+    int choice;
+    system(CLEAR_CONSOLE);
+    std::cout << "Geometry Menu\n";
+    auto iter = _objects_.front();
+    int count = 1;
+    while (iter) {
+        std::cout << count << ". ";
+        iter->value()->print(_zoom_koef_);
+        std::cout << '\n';
+        ++count;
+        iter = iter->next();
+    }
+    std::cout << "Please choose: ";
+    input_menu_command(choice);
+    // Убираем мусор из потока.
+    std::cin.get();
+    return choice;
+}
+
 int choise_add_shape_menu() {
     int choice;
     system(CLEAR_CONSOLE);
@@ -160,13 +214,128 @@ int choise_main_menu() {
     system(CLEAR_CONSOLE);
     std::cout << "Main Menu\n"
               << "1 - Add item\n"
-              << "2 - Delete item\n"
+              << "2 - Geometry\n"
               << "3 - Quit\n"
               << "Please choose: ";
     input_menu_command(choice);
     // Убираем мусор из потока.
     std::cin.get();
     return choice;
+}
+
+void triangle_geometry_menu(Triangle* object) {
+    int choice;
+    while (true) {
+        choice = choise_triangle_geometry_menu();
+        switch (choice) {
+            case 1:
+                _objects_.push_back(new Segment(object->medianA()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 2:
+                _objects_.push_back(new Segment(object->medianB()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 3:
+                _objects_.push_back(new Segment(object->medianC()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 4:
+                _objects_.push_back(new Segment(object->heightA()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 5:
+                _objects_.push_back(new Segment(object->heightB()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 6:
+                _objects_.push_back(new Segment(object->heightC()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 7:
+                _objects_.push_back(new Segment(object->middle_line()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 8:
+                system(CLEAR_CONSOLE);
+                return;
+            default:
+                std::cout << "No such item\nPress enter...";
+                read_enter();
+                continue;
+        }
+    }
+}
+
+void quadrangle_geometry_menu(Quadrangle* object) {
+    int choice;
+    while (true) {
+        choice = choise_quadrangle_geometry_menu();
+        switch (choice) {
+            case 1:
+                _objects_.push_back(new Segment(object->left_diagonal()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 2:
+                _objects_.push_back(new Segment(object->right_diagonal()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 3:
+                _objects_.push_back(new Segment(object->middle_line()));
+                std::cout << "Press enter...";
+                read_enter();
+                break;
+            case 4:
+                system(CLEAR_CONSOLE);
+                return;
+            default:
+                std::cout << "No such item\nPress enter...";
+                read_enter();
+                continue;
+        }
+    }
+}
+
+void geometry_menu() {
+    int choice;
+    choice = choise_geometry_menu();
+    Ishape* object;
+    try {
+        object = _objects_.at(choice - 1);
+    } catch (...) {
+        std::cout << "Error: invalid index\nPress enter...";
+        read_enter();
+        return;
+    }
+
+    if (object->type() == "point") {
+        std::cout << "No geometry for the point\n";
+        read_enter();
+        return;
+    } else if (object->type() == "segment") {
+        std::cout << "No geometry for the segment\n";
+        read_enter();
+        return;
+    } else if (object->type() == "triangle") {
+        triangle_geometry_menu(dynamic_cast<Triangle*>(object));
+        return;
+    } else if (object->type() == "quadrangle") {
+        quadrangle_geometry_menu(dynamic_cast<Quadrangle*>(object));
+        return;
+    } else if (object->type() == "ellipse") {
+        std::cout << "No geometry for the ellipse\n";
+        read_enter();
+        return;
+    }
 }
 
 void add_shape_menu() {
@@ -215,9 +384,7 @@ void main_menu() {
                 add_shape_menu();
                 break;
             case 2:
-                std::cout << "Delete item\n";
-                std::cout << "Press enter...";
-                read_enter();
+                geometry_menu();
                 break;
             case 3:
                 _MENU_ = false;

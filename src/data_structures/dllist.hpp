@@ -37,7 +37,7 @@ public:
 	~List();
 
 	// Проверка списка на пустоту.
-	bool is_empty() { return _first == 0; }
+	bool is_empty() const { return _first == 0; }
 	// Возвращает значение первого элемента в списке.
 	pnode<Type> front() { return _first; }
 	// Возвращает значение последнего элемента в списке.
@@ -142,6 +142,7 @@ Type List<Type>::at(const int idx) const {
 		pos++;
 	}
 	if (idx > pos || idx < 0) throw 1;
+	if (idx == pos && ! curr) throw 1;
 	return curr->_value;
 }
 

@@ -38,6 +38,8 @@ public:
 	double get_x() const { return _x; }
 	double get_y() const { return _y; }
 
+	void print(const double) const override;
+
 	// Метод возвращает тип объекта.
 	std::string type() const override { return "point"; };
 
